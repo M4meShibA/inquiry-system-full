@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>受付完了</title>
+  <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+<main>
+  <h1>お問い合わせを受け付けました</h1>
+  <p>ご連絡ありがとうございます。担当者が内容を確認し、メールでご返信します。</p>
+  <p><a th:href="@{/contact}">続けて問い合わせを登録する</a></p>
+  <p sec:authorize="isAuthenticated()"><a th:href="@{/admin/inquiries}">&larr; 一覧へ戻る</a></p>
+</main>
+</body>
+</html>

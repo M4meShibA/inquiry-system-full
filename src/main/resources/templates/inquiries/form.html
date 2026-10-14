@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>問い合わせ登録</title>
+  <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+<main>
+  <h1>問い合わせフォーム</h1>
+  <form th:action="@{/contact}" th:object="${form}" method="post">
+    <label for="customerName">お名前</label>
+    <input type="text" id="customerName" th:field="*{customerName}">
+    <p class="error" th:if="${#fields.hasErrors('customerName')}" th:errors="*{customerName}"></p>
+
+    <label for="customerEmail">メールアドレス</label>
+    <input type="email" id="customerEmail" th:field="*{customerEmail}">
+    <p class="error" th:if="${#fields.hasErrors('customerEmail')}" th:errors="*{customerEmail}"></p>
+
+    <label for="subject">件名</label>
+    <input type="text" id="subject" th:field="*{subject}">
+    <p class="error" th:if="${#fields.hasErrors('subject')}" th:errors="*{subject}"></p>
+
+    <label for="body">本文</label>
+    <textarea id="body" rows="8" th:field="*{body}"></textarea>
+    <p class="error" th:if="${#fields.hasErrors('body')}" th:errors="*{body}"></p>
+
+    <p class="row">
+      <button type="submit">送信</button>
+      <a sec:authorize="isAuthenticated()" th:href="@{/admin/inquiries}">一覧へ戻る</a>
+    </p>
+  </form>
+</main>
+</body>
+</html>
